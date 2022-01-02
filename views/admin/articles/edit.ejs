@@ -6,7 +6,7 @@
         <h2>Editar Artigo</h2>
       </div>
       <div class="card-body p-3">
-        <form method="post" action="/admin/articles/save-edit">
+        <form class="form full-width" method="post" action="/admin/articles/save-edit">
           <label for="category">
             Escolha uma Categoria:
             <select class="form-control" selected="<%= article.categoryId %>" required name="category" id="category">

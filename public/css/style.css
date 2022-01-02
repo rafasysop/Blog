@@ -1,7 +1,13 @@
 form { 
   display: inline-block;
+}
+
+.full-width {
   width: 100%;
 }
+
+.table-list td:first-child {  width: 5% }
+.table-list td:first-child + td + td + td {  width: 20% }
 
 label {
   width: 100%;

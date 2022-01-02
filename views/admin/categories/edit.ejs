@@ -6,7 +6,7 @@
         <h2>Editar Categoria</h2>
       </div>
       <div class="card-body p-3">
-        <form method="POST" action="/admin/categories/save-edit">
+        <form class="form full-width" method="POST" action="/admin/categories/save-edit">
           <label for="title">Nome da Categoria:</label>
           <input type="hidden" required name="id" value="<%= category.id %>">
           <input type="text" required name="title" value="<%= category.title %>" class="form-control" id="title" placeholder="Defina o nome da Categoria">

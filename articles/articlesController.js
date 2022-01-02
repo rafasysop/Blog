@@ -65,4 +65,22 @@ articlesController.get('/admin/articles/edit/:id', (req, res) => {
     })
   })
 })
+
+articlesController.post('/admin/articles/save-edit', (req, res) => {
+  const { category, title, body, id} = req.body
+
+  if (!id || !category || !title || !body) return res.redirect('/admin/articles/')
+
+  Article.update({
+    title,
+    slug: slug(title, { lower: true }),
+    body,
+    categoryId: category
+  },{
+    where: { id } 
+  }).then(() => {
+    return res.redirect('/admin/articles/')
+  })
+})
+
 module.exports = { articlesController }

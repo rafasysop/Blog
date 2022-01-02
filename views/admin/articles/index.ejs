@@ -7,7 +7,7 @@
         <h2>Listar Artigos</h2>
       </div>
       <div class="card-body p-3">
-        <table class="table table-bordered">
+        <table class="table table-list table-bordered">
           <thead>
             <tr>
               <th>Id</th>
@@ -20,7 +20,7 @@
             <% articles.forEach(article => { %>
               <tr>
                 <td><%= article.id %></td>
-                <td><a href="/articles/<%= article.slug %>" target="_blank"><%= article.title %></a></td>
+                <td><a href="/articles/<%= article.slug %>"><%= article.title %></a></td>
                 <td><%= article.category.title %></td>
                 <td>
                     <a href="/admin/articles/edit/<%= article.id %>" class="btn btn-warning px-3">Editar</a>
