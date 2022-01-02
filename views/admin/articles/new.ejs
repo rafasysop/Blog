@@ -1,0 +1,47 @@
+<%- include("../../partials/header.ejs") %>
+<%- include("../../partials/navbar.ejs") %>
+  <div class="container mt-3">
+    <div class="card">
+      <div class="card-header text-center">
+        <h2>Novo Artigo</h2>
+      </div>
+      <div class="card-body p-3">
+        <form method="post" action="/admin/articles/save">
+          <label for="category">
+            Escolha uma Categoria:
+            <select class="form-control" required name="category" id="category">
+              <option value=''>Escolha Uma Categoria</option>
+              <% categories.forEach(cat => { %>
+                <option value="<%= cat.id %>"><%= cat.title %></option>
+              <% }) %>
+            </select>
+          </label>
+          <br>
+          <label for="title">
+            Titulo do Artigo:
+            <input type="text" required name="title" class="form-control" id="title" placeholder="Defina o Titulo do Artigo">
+          </label>
+          <br>
+          <label for="body">
+            Conteúdo do Artigo:
+            <textarea class="form-control" name="body" id="bodyArticle" cols="40" rows="20" placeholder="Defina o Conteudo do seu artigo"></textarea>
+          </label>
+          <br>
+          <button type="submit" class="btn btn-success px-3">Cadastrar</button>
+          <a class="btn btn-danger px-3" href="/admin/articles/">Cancelar</a>
+        </form>
+      </div>
+    </div>
+  </div>
+
+<%- include("../../partials/footer.ejs") %>
+<script src="/js/tinymce/tinymce.min.js"></script>
+<script>
+  tinymce.init({
+    selector: '#bodyArticle',
+    plugins: [
+      'advlist autolink link image lists print preview hr searchreplace wordcount fullscreen insertdatetime media save table paste emoticons',
+    ],
+    language: 'pt_BR'
+  })
+</script>

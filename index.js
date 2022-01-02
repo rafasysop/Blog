@@ -17,6 +17,8 @@ app.use(bodyParser.json())
 connection.authenticate()
   .then(() => {
     console.log('Conectado com sucesso ao Blog');
+    Category.hasMany(Article)
+    Article.belongsTo(Category)
   })
   .catch((err) => console.log(err))
 

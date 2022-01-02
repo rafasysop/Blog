@@ -1,0 +1,20 @@
+form { 
+  display: inline-block;
+  width: 100%;
+}
+
+label {
+  width: 100%;
+}
+
+.navbar-nav {
+  flex-direction: row;
+}
+
+.nav-item {
+  margin: 0 5px;
+}
+
+.nav-link, .nav-item {
+  display: inline-block;
+}

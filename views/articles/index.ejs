@@ -1,0 +1,8 @@
+<%- include("../partials/header.ejs") %>
+<%- include("../partials/navbar.ejs") %>
+  <div class="container mt-3">
+    <h1 class="text-center"><%= article.title %></h1>
+    <p v-html="<%= article.body %>"><%= article.body %></p>
+  </div>
+
+<%- include("../partials/footer.ejs") %>
