@@ -15,7 +15,6 @@ articlesController.get('/admin/articles/new', (req, res) => {
 articlesController.get('/articles/:slug', (req, res) => {
   const { slug } = req.params
   Article.findOne({ where: { slug }, include: [{ model: Category }]}).then(article => {
-    console.log(article);
     res.render('./articles/index.ejs', { article })
   })
 })
@@ -46,7 +45,7 @@ articlesController.post('/admin/articles/save', (req, res) => {
 
 articlesController.post('/admin/articles/delete', (req, res) => {
   const { id } = req.body
-  if ( !id) return res.redirect('/admin/articles/')
+  if (!id) return res.redirect('/admin/articles/')
 
   Article.destroy({
     where: { id }
@@ -57,8 +56,9 @@ articlesController.post('/admin/articles/delete', (req, res) => {
 
 articlesController.get('/admin/articles/edit/:id', (req, res) => {
   const { id } = req.params
-  if (!id && isNaN(Number(id))) return res.redirect('/admin/articles/')
+  if (!id || isNaN(id)) return res.redirect('/admin/articles/')
 
+  console.log(id);
   Category.findAll().then(categories => {
     Article.findOne({ where: { id }}).then(article => {
       res.render('admin/articles/edit.ejs', { categories, article})

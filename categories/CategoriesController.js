@@ -27,7 +27,7 @@ categoriesController.post('/admin/categories/save', (req, res) => {
 
 categoriesController.post('/admin/categories/save-edit', (req, res) => {
   const { title, id } = req.body
-  if (!title && !id) return res.redirect('/admin/categories')
+  if (!title || !id) return res.redirect('/admin/categories')
 
   Category.update({
     title,
