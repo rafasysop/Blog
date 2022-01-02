@@ -14,13 +14,16 @@ articlesController.get('/admin/articles/new', (req, res) => {
 
 articlesController.get('/articles/:slug', (req, res) => {
   const { slug } = req.params
-  Article.findOne({ where: { slug } }).then(article => {
+  Article.findOne({ where: { slug }, include: [{ model: Category }]}).then(article => {
+    console.log(article);
     res.render('./articles/index.ejs', { article })
   })
 })
 
 articlesController.get('/admin/articles/', (req, res) => {
-  Article.findAll().then(articles => {
+  Article.findAll({
+    include: [{ model: Category }]
+  }).then(articles => {
     res.render('./admin/articles/index.ejs', { articles })
   })
 })
@@ -41,4 +44,25 @@ articlesController.post('/admin/articles/save', (req, res) => {
   })
 })
 
+articlesController.post('/admin/articles/delete', (req, res) => {
+  const { id } = req.body
+  if ( !id) return res.redirect('/admin/articles/')
+
+  Article.destroy({
+    where: { id }
+  }).then(() => {
+    return res.redirect('/admin/articles/')
+  })
+})
+
+articlesController.get('/admin/articles/edit/:id', (req, res) => {
+  const { id } = req.params
+  if (!id && isNaN(Number(id))) return res.redirect('/admin/articles/')
+
+  Category.findAll().then(categories => {
+    Article.findOne({ where: { id }}).then(article => {
+      res.render('admin/articles/edit.ejs', { categories, article})
+    })
+  })
+})
 module.exports = { articlesController }
