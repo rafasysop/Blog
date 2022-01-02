@@ -1,13 +1,14 @@
-const sequelize = require('sequelize')
-const connection = require('../database/connection')
+const Sequelize = require('sequelize')
+const {connection} = require('../database/connection')
+const { Article } = require('../articles/Article')
 
 const Category = connection.define('categories', {
   title: {
-    type: sequelize.STRING,
+    type: Sequelize.STRING,
     allowNull: false
   },
   slug: {
-    type: sequelize.STRING,
+    type: Sequelize.STRING,
     allowNull: false
   }
 })

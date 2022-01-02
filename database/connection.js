@@ -6,4 +6,4 @@ const connection = new Sequelize('blog', process.env.MYSQL_USER, process.env.MYS
 })
 
 
-module.exports = connection
+module.exports = { connection }

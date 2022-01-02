@@ -1,8 +1,10 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const connection = require('./database/connection')
+const {connection} = require('./database/connection')
 const { categoriesController } = require('./categories/CategoriesController')
 const { articlesController } = require('./articles/articlesController')
+const { Article } = require('./articles/Article')
+const { Category } = require('./categories/Category')
 
 const app = express()
 
