@@ -1,12 +1,12 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const connection = require('./database/connection')
-
+const { categoriesController } = require('./categories/CategoriesController')
+const { articlesController } = require('./articles/articlesController')
 
 const app = express()
+
 app.set('view engine', 'ejs')
-
-
 app.use(express.static('public'))
 
 app.use(bodyParser.urlencoded({ extended: false}))
@@ -19,5 +19,7 @@ connection.authenticate()
   .catch((err) => console.log(err))
 
 app.get('/', (req, res) => {res.render('index')})
+app.use('/', categoriesController)
+app.use('/', articlesController)
 
 app.listen(8080, () => console.log('Servidor Rodando'))
