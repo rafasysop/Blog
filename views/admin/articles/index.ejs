@@ -17,6 +17,13 @@
             </tr>
           </thead>
           <tbody>
+            <% if (!articles.length) {%>
+              <tr>
+                <td colspan="4">
+                  <p class="text-center">Não existe nenhum artigo</p>   
+                </td>
+              </tr>
+            <% } %>
             <% articles.forEach(article => { %>
               <tr>
                 <td><%= article.id %></td>

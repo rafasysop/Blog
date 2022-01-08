@@ -3,6 +3,9 @@
 <body>
     <div class="container">
         <h1 class="text-center mt-5">Bem vindo ao Blog Pessoal</h1>
+        <% if (!articles.length) {%>
+          <p class="text-center">Não existe nenhum artigo.</p>   
+        <% } %>
         <% articles.forEach(article => { %>
           <div class="card mt-5 mb-3">
               <div class="card-header">
@@ -10,7 +13,6 @@
               </div>
               <div class="card-body">
                   <div class="limit">
-                      <%= article.body %>
                   </div>
                 <a class="btn btn-link" href="<%= article.slug %>">Ler Artigo</a>
               </div>

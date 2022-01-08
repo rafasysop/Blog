@@ -24,7 +24,9 @@ connection.authenticate()
 
 app.get('/', (req, res) => {
   Article.findAll().then(articles => {
-    res.render('index', { articles })
+    Category.findAll().then(categories => {
+      res.render('index', { articles, categories })
+    })
   })
 })
 
@@ -35,7 +37,9 @@ app.get('/:slug', (req, res) => {
   Article.findOne({ where: { slug } })
   .then(article => {
     if(!article) return res.redirect('/')
-    res.render('article', { article })
+    Category.findAll().then(categories => {
+      res.render('article', { article, categories })
+    })
   })
   .catch(() => res.redirect('/'))
 })

@@ -1,5 +1,6 @@
 const express = require('express')
 const slug = require('slugify')
+const { Article } = require('../articles/Article')
 const { Category } = require('./Category')
 
 const categoriesController = express.Router()
@@ -12,6 +13,19 @@ categoriesController.get('/admin/categories/', (req, res) => {
   Category.findAll().then(categories => {
     res.render('./admin/categories/index', { categories })
   }).catch(() => res.redirect('/'))
+})
+
+categoriesController.get('/cat/:slug', (req, res) => {
+  const { slug } = req.params
+  if(!slug) return res.redirect('/')
+  Category.findOne({ where: { slug }, include: [{ model: Article }] })
+  .then(category => {
+      Category.findAll().then(categories => {
+        if(!category) return res.redirect('/')
+        res.render('cat', { category, articles: category.articles, categories })
+      })
+    })
+    .catch(() => res.redirect('/'))
 })
 
 categoriesController.post('/admin/categories/save', (req, res) => {

@@ -17,6 +17,13 @@
             </tr>
           </thead>
           <tbody>
+            <% if (!categories.length) {%>
+              <tr>
+                <td colspan="4">
+                  <p class="text-center">Não existe nenhuma categoria</p>   
+                </td>
+              </tr>
+            <% } %>
             <% categories.forEach(cat => { %>
               <tr>
                 <td><%= cat.id %></td>
