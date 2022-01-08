@@ -22,7 +22,24 @@ connection.authenticate()
   })
   .catch((err) => console.log(err))
 
-app.get('/', (req, res) => {res.render('index')})
+app.get('/', (req, res) => {
+  Article.findAll().then(articles => {
+    res.render('index', { articles })
+  })
+})
+
+app.get('/:slug', (req, res) => {
+  const { slug } = req.params
+  if(!slug) return res.redirect('/')
+
+  Article.findOne({ where: { slug } })
+  .then(article => {
+    if(!article) return res.redirect('/')
+    res.render('article', { article })
+  })
+  .catch(() => res.redirect('/'))
+})
+
 app.use('/', categoriesController)
 app.use('/', articlesController)
 
