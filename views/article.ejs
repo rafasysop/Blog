@@ -15,3 +15,8 @@
     </div>
 </body>
 <%- include("partials/footer.ejs") %>
+
+<script>
+    activeLink = document.querySelector("#<%= category.slug %>")
+    activeLink.classList.add('active')
+</script>

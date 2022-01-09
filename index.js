@@ -34,11 +34,12 @@ app.get('/:slug', (req, res) => {
   const { slug } = req.params
   if(!slug) return res.redirect('/')
 
-  Article.findOne({ where: { slug } })
+  Article.findOne({ where: { slug }, include: [{model: Category}] })
   .then(article => {
     if(!article) return res.redirect('/')
     Category.findAll().then(categories => {
-      res.render('article', { article, categories })
+      console.log(article.category);
+      res.render('article', { article, categories, category: { slug: article.category.slug } })
     })
   })
   .catch(() => res.redirect('/'))
