@@ -2,7 +2,7 @@
 <%- include("partials/homenavbar.ejs") %>
 <body>
   <div class="container">
-    <h1 class="text-center mt-5">Bem vindo ao Blog Pessoal</h1>
+    <h1 class="text-center mt-5">Categoria: <%= category.title %></h1>
     <% if (!articles.length) {%>
       <p class="text-center">Não existe nenhum artigo nesta categoria</p>   
     <% } %>

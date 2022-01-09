@@ -1,18 +1,27 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <a class="navbar-brand p-2" href="/">
+<nav class="navbar navbar-expand-lg navbar-dark  bg-primary py-3">
+  <a class="navbar-brand px-3" href="/">
     BlogPess
   </a>
-  <ul class="navbar-nav m-auto">
+  <ul class="navbar-nav d-flex justify-content-lg-start">
     <li class="nav-item">
-      <a class="nav-link" href="/">Home</a>
+      <a class="nav-link btn btn-info px-3" id='home' href="/">Home</a>
     </li>
 
     <% categories.forEach(category => { %>
       <li class="nav-item">
-        <a class="nav-link" href="/cat/<%= category.slug %>"><%= category.title %></a>
+        <a class="nav-link btn btn-info px-3" id="<%= category.slug %>" href="/cat/<%= category.slug %>"><%= category.title %></a>
       </li>
 
     <% }) %>
 
   </ul>
 </nav>
+
+<script>
+  let activeLink = document.querySelector('#home');
+  const pathnameSlug = '<%= category.slug %>'
+  if (pathnameSlug !== '/'){
+    activeLink = document.querySelector(`#${pathnameSlug}`)
+  }
+    activeLink.classList.add('active')
+</script>

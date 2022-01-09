@@ -1,0 +1,9 @@
+/*
+-- Query: SELECT * FROM blog.categories
+LIMIT 0, 1000
+
+-- Date: 2022-01-08 20:13
+*/
+INSERT INTO `` (`id`,`title`,`slug`,`createdAt`,`updatedAt`) VALUES (14,'Front End','front-end','2022-01-08 19:33:44','2022-01-08 19:33:44');
+INSERT INTO `` (`id`,`title`,`slug`,`createdAt`,`updatedAt`) VALUES (15,'Back End','back-end','2022-01-08 19:33:51','2022-01-08 19:33:51');
+INSERT INTO `` (`id`,`title`,`slug`,`createdAt`,`updatedAt`) VALUES (16,'Devops teste','devops-teste','2022-01-08 19:34:12','2022-01-08 19:56:41');

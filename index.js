@@ -25,7 +25,7 @@ connection.authenticate()
 app.get('/', (req, res) => {
   Article.findAll().then(articles => {
     Category.findAll().then(categories => {
-      res.render('index', { articles, categories })
+      res.render('index', { articles, categories , category: { slug: '/' }})
     })
   })
 })
