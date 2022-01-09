@@ -57,9 +57,11 @@ categoriesController.post('/admin/categories/delete', (req, res) => {
   const { id } = req.body
   if (!id && !isNaN(id)) return res.redirect('/admin/categories')
 
-  Category.destroy({
-    where : { id }
-  }).then(() => res.redirect('/admin/categories'))
+  Article.destroy({ where: { categoryId: id }}).then(() => {
+    Category.destroy({
+      where : { id }
+    }).then(() => res.redirect('/admin/categories')) 
+    })
   .catch(() => res.redirect('/admin/categories'))
 })
 
